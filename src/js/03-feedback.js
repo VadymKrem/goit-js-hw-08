@@ -18,9 +18,10 @@ function onReadDataForm() {
 refs.form.addEventListener('input', throttle(onNewInputEmail, 500));
 refs.form.addEventListener('submit', onSubmitForm);
 
+const dataStorage = {};
+
 function onNewInputEmail() {
-    const dataForm = new FormData(refs.form)
-    const dataStorage = {};
+    const dataForm = new FormData(refs.form);
     dataForm.forEach((value, name) => {
     dataStorage[name] = value;
   });
@@ -31,4 +32,5 @@ function onSubmitForm(event) {
     event.preventDefault();
     event.currentTarget.reset();
     localStorage.removeItem("feedback-form-state");
+    console.log(dataStorage)
 }
